@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ColisionEventsApi/ColisionEventsApi/appsettings.Development.json
+
+# Ignore build output directories
+**/bin/
+**/obj/
+/ColisionEventsApi/ColisionEvents.Api/appsettings.Development.json
+ColisionEventsApi/.vs
