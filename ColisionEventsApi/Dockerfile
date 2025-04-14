@@ -10,8 +10,8 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # Copia o .csproj e restaura dependências
-COPY ["ColisionEventsApi/ColisionEventsApi.csproj", "ColisionEventsApi/"]
-RUN dotnet restore "./ColisionEventsApi/ColisionEventsApi.csproj"
+COPY ["ColisionEvents.Api/ColisionEventsApi.csproj", "ColisionEventsApi/"]
+RUN dotnet restore "./ColisionEvents.Api/ColisionEventsApi.csproj"
 
 # Copia o restante do código e compila
 COPY . .
