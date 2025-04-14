@@ -10,21 +10,21 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # Copia o .csproj e restaura dependências
-COPY ["ColisionEvents.Api/ColisionEventsApi.csproj", "ColisionEventsApi/"]
-RUN dotnet restore "./ColisionEvents.Api/ColisionEventsApi.csproj"
+COPY ["ColisionEvents.Api/ColisionEvents.Api.csproj", "ColisionEventsApi/"]
+RUN dotnet restore "./ColisionEvents.Api/ColisionEvents.Api.csproj"
 
 # Copia o restante do código e compila
 COPY . .
 WORKDIR "/src/ColisionEventsApi"
-RUN dotnet build "./ColisionEventsApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./ColisionEvents.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Publica a aplicação
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ColisionEventsApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./ColisionEvents.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Imagem final
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ColisionEventsApi.dll"]
+ENTRYPOINT ["dotnet", "ColisionEvents.Api.dll"]
